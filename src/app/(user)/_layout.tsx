@@ -31,9 +31,10 @@ export default function TabLayout() {
       />
 
       <Tabs.Screen
-        name="two"
+        name="orders"
         options={{
           title: "Orders",
+          headerShown: false,
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="format-list-bulleted" color={color} />
           ),
