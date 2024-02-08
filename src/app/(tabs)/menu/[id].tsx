@@ -6,7 +6,7 @@ import {Stack} from "expo-router";
 import {Image} from "expo-image";
 import Button from "@/src/components/ui/button";
 import {PizzaSize} from "@/types";
-import ThereIsNoProduct from "@/src/components/ui/NoProduct";
+import ThereIsNoProduct from "@/src/components/ui/no-product";
 
 const SIZES: PizzaSize[] = ['S', 'M', 'L', 'XL'];
 

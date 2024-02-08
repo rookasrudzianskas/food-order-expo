@@ -5,6 +5,7 @@ import { SplashScreen, Stack } from "expo-router";
 import { vars } from "nativewind";
 import { memo, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
+import CartProvider from "@/src/providers/cart-provider";
 
 export {
   ErrorBoundary,
@@ -47,16 +48,18 @@ const theme = vars({
 function RootLayoutNav() {
   return (
     <View style={[theme, StyleSheet.absoluteFill]}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="cart"
-          options={{
-            title: "Cart",
-            presentation: 'modal'
-        }}
-        />
-      </Stack>
+      <CartProvider>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="cart"
+            options={{
+              title: "Cart",
+              presentation: 'modal'
+            }}
+          />
+        </Stack>
+      </CartProvider>
     </View>
   );
 }
