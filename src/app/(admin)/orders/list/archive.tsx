@@ -1,5 +1,5 @@
 import { FlatList } from 'react-native-gesture-handler';
-import orders from '../../../../assets/data/orders';
+import orders from '../../../../../assets/data/orders';
 import { Stack } from 'expo-router';
 import OrderListItem from "@/src/components/order-list-item";
 
