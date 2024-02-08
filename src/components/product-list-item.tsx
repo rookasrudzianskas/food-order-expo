@@ -2,11 +2,11 @@ import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Image} from "expo-image";
 import Colors from "@/src/constants/Colors";
-import {Product} from "@/types";
+import {Product, Tables} from "@/types";
 import {useRouter, useSegments} from "expo-router";
 
 type ProductListItemProps = {
-  product: Product;
+  product: Tables<'products'>;
 };
 
 const ProductListItem = ({product}: ProductListItemProps) => {
