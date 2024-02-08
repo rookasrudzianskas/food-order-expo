@@ -1,7 +1,7 @@
 import Colors from "@/src/constants/Colors";
-import {Feather, MaterialCommunityIcons} from "@expo/vector-icons";
-import {Link, Redirect, Tabs} from "expo-router";
-import { Pressable, useColorScheme } from "react-native";
+import {MaterialCommunityIcons} from "@expo/vector-icons";
+import {Redirect, Tabs} from "expo-router";
+import { useColorScheme } from "react-native";
 import {useAuth} from "@/src/providers/auth-provider";
 
 function TabBarIcon(props: {
