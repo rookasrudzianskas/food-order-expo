@@ -1,8 +1,6 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
-import Button from "@/src/components/ui/button";
 import Colors from '@/src/constants/Colors';
-import {OrderItem} from "@/types";
 import { Tables } from '../database.types';
 
 type OrderItemListItemProps = {
