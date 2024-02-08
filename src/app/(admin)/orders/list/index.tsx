@@ -2,10 +2,9 @@ import { FlatList } from 'react-native-gesture-handler';
 import { Stack } from 'expo-router';
 import OrderListItem from "@/src/components/order-list-item";
 import {useAdminOrderList} from "@/src/api/orders";
-import React, {useEffect} from "react";
+import React from "react";
 import IsLoading from "@/src/components/ui/is-loading";
 import ErrorAPI from "@/src/components/ui/error-api";
-import {supabase} from "@/src/app/lib/supabase";
 import {useQueryClient} from "@tanstack/react-query";
 import {useInsertOrderSubscription} from "@/src/api/orders/subscriptions";
 

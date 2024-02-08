@@ -1,13 +1,11 @@
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { Stack, useLocalSearchParams } from 'expo-router';
-import orders from '../../../../assets/data/orders';
 import OrderListItem from "@/src/components/order-list-item";
 import OrderItemListItem from "@/src/components/order-item-list";
 import {useOrderDetails} from "@/src/api/orders";
 import IsLoading from "@/src/components/ui/is-loading";
 import ErrorAPI from "@/src/components/ui/error-api";
-import React, {useEffect} from "react";
-import {supabase} from "@/src/app/lib/supabase";
+import React from "react";
 import {useUpdateOrderSubscription} from "@/src/api/orders/subscriptions";
 
 const OrderDetailScreen = () => {
