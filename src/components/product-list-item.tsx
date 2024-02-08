@@ -4,7 +4,11 @@ import {Image} from "expo-image";
 import Colors from "@/src/constants/Colors";
 import {Product} from "@/types";
 
-const ProductListItem = ({product}: Product) => {
+type ProductListItemProps = {
+  product: Product;
+};
+
+const ProductListItem = ({product}: ProductListItemProps) => {
   return (
     <View className="bg-white p-3 rounded-xl">
       <Image
