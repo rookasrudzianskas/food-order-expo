@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     shadowRadius: 1.84,
 
     elevation: 5,
+    maxWidth: '50%',
   },
   price: {
     fontWeight: '600',
