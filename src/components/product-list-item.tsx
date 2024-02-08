@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Image} from "expo-image";
 import Colors from "@/src/constants/Colors";
 import {Product, Tables} from "@/types";
