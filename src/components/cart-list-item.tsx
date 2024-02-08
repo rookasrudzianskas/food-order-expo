@@ -1,9 +1,10 @@
-import {View, Text, StyleSheet, Image, Pressable, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
 import {CartItem} from "@/types";
 import {useCart} from "@/src/providers/cart-provider";
+import {Image} from "expo-image";
 
 type CartListItemProps = {
   cartItem: CartItem;
@@ -14,9 +15,10 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: cartItem.product.image || '' }}
+        source={cartItem.product.image}
         style={styles.image}
-        resizeMode="contain"
+        contentFit="contain"
+        transition={500}
       />
       <View style={{ flex: 1 }}>
         <Text style={styles.title}>{cartItem.product.name}</Text>
