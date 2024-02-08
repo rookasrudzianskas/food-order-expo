@@ -15,7 +15,7 @@ const ProductListItem = ({product}: ProductListItemProps) => {
     <TouchableOpacity
       activeOpacity={0.8}
       style={styles.container}
-      onPress={() => router.push(`/${product.id}`)}
+      onPress={() => router.push(`/(tabs)/menu/${product.id}`)}
       className="bg-white flex-1 p-3 rounded-xl"
     >
       <Image

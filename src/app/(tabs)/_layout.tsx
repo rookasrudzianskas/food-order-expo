@@ -1,52 +1,41 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Feather } from "@expo/vector-icons";
+import {Feather, MaterialCommunityIcons} from "@expo/vector-icons";
 import { Link, Tabs } from "expo-router";
 import { Pressable, useColorScheme } from "react-native";
 
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof Feather>["name"];
+  name: React.ComponentProps<typeof MaterialCommunityIcons>["name"];
   color: string;
 }) {
-  return <Feather size={28} style={{ marginBottom: -3 }} {...props} />;
+  return <MaterialCommunityIcons size={20} style={{ marginBottom: -3 }} {...props} />;
 }
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
-    // screenOptions={{
-    //   tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-    // }}
-    >
+    <Tabs>
       <Tabs.Screen
         name="index"
+        options={{ href: null }}
+      />
+
+      <Tabs.Screen
+        name="menu"
         options={{
-          title: "Home",
+          title: 'Menu',
           headerShown: false,
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <Feather
-                    name="info"
-                    size={25}
-                    color={"black"}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="food-outline" color={color} />
           ),
         }}
       />
+
       <Tabs.Screen
         name="two"
         options={{
-          title: "Tab Two",
+          title: "Orders",
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="settings" color={color} />
+            <TabBarIcon name="format-list-bulleted" color={color} />
           ),
         }}
       />
