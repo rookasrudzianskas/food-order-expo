@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Image} from "expo-image";
 import Colors from "@/src/constants/Colors";
 import {Product} from "@/types";
@@ -10,7 +10,7 @@ type ProductListItemProps = {
 
 const ProductListItem = ({product}: ProductListItemProps) => {
   return (
-    <View style={styles.container} className="bg-white flex-1 p-3 rounded-xl">
+    <TouchableOpacity activeOpacity={0.8} style={styles.container} className="bg-white flex-1 p-3 rounded-xl">
       <Image
         source={product.image}
         style={styles.image}
@@ -19,7 +19,7 @@ const ProductListItem = ({product}: ProductListItemProps) => {
       />
       <Text className="text-xl font-semibold mb-2">{product.name}</Text>
       <Text style={styles.price}>${product.price}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
