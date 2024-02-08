@@ -76,11 +76,11 @@ const CreateProductScreen = () => {
       return;
     }
 
-    // const imagePath = await uploadImage();
+    const imagePath = await uploadImage();
 
     // Save in the database
     insertProduct(
-      { name, price: parseFloat(price), image: image },
+      { name, price: parseFloat(price), image: imagePath },
       {
         onSuccess: () => {
           resetFields();
@@ -95,10 +95,10 @@ const CreateProductScreen = () => {
       return;
     }
 
-    // const imagePath = await uploadImage();
+    const imagePath = await uploadImage();
 
     updateProduct(
-      { id, name, price: parseFloat(price), image: image },
+      { id, name, price: parseFloat(price), image: imagePath },
       {
         onSuccess: () => {
           resetFields();
