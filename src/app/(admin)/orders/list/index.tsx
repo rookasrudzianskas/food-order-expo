@@ -5,7 +5,6 @@ import {useAdminOrderList} from "@/src/api/orders";
 import React from "react";
 import IsLoading from "@/src/components/ui/is-loading";
 import ErrorAPI from "@/src/components/ui/error-api";
-import {useQueryClient} from "@tanstack/react-query";
 import {useInsertOrderSubscription} from "@/src/api/orders/subscriptions";
 
 export default function OrdersScreen() {

@@ -8,8 +8,6 @@ import {PizzaSize} from "@/types";
 import ThereIsNoProduct from "@/src/components/ui/no-product";
 import {useCart} from "@/src/providers/cart-provider";
 import {useProduct} from "@/src/api/products";
-import IsLoading from "@/src/components/ui/is-loading";
-import ErrorAPI from "@/src/components/ui/error-api";
 
 const SIZES: PizzaSize[] = ['S', 'M', 'L', 'XL'];
 
@@ -28,6 +26,7 @@ const ProductDetailsScreen = () => {
     if (!product) {
       return;
     }
+    // @ts-ignore
     addItem(product, selectedSize);
     router.push('/cart');
   };
@@ -39,8 +38,10 @@ const ProductDetailsScreen = () => {
 
   return (
     <View className="flex-1 bg-white p-3">
+      {/* @ts-ignore */}
       <Stack.Screen options={{ title: product.name }} />
       <Image
+        // @ts-ignore
         source={product.image}
         style={styles.image}
         contentFit="cover"

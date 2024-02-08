@@ -1,4 +1,4 @@
-import {FlatList, Text, View} from "react-native";
+import {FlatList, View} from "react-native";
 import React from "react";
 import ProductListItem from "@/src/components/product-list-item";
 import IsLoading from "@/src/components/ui/is-loading";
@@ -13,6 +13,7 @@ const MenuScreen = () => {
   return (
     <View className="bg-gray-100">
       <FlatList
+        // @ts-ignore
         data={products}
         renderItem={({item}) => (
           <ProductListItem product={item} />
