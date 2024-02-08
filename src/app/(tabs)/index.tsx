@@ -14,6 +14,9 @@ const MenuScreen = () => {
         )}
         keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
+        numColumns={2}
+        contentContainerStyle={{ gap: 10, padding: 10 }}
+        columnWrapperStyle={{ gap: 10 }}
       />
     </View>
   );
