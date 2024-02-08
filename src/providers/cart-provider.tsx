@@ -46,7 +46,13 @@ export default function CartProvider({ children }: PropsWithChildren) {
   };
 
   const updateQuantity = (itemId: string, amount: 1 | -1) => {
-
+    setItems((existingItems) =>
+      existingItems
+        .map((it) =>
+          it.id === itemId ? { ...it, quantity: it.quantity + amount } : it
+        )
+        .filter((item) => item.quantity > 0)
+    );
   };
 
   return (

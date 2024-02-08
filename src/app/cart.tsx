@@ -6,6 +6,17 @@ import CartListItem from "@/src/components/cart-list-item";
 
 const Cart = () => {
   const { items } = useCart();
+
+  if(items.length === 0) {
+    return (
+      <View className="flex flex-1 items-center justify-center">
+        <Text className="font-semibold text-xl">
+          Your cart is empty
+        </Text>
+      </View>
+    );
+  }
+
   return (
     <View>
       <FlatList

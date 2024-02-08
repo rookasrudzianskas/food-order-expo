@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {useLocalSearchParams} from "expo-router";
+import {useLocalSearchParams, useRouter} from "expo-router";
 import products from "@/assets/data/products";
 import {Stack} from "expo-router";
 import {Image} from "expo-image";
@@ -13,6 +13,7 @@ const SIZES: PizzaSize[] = ['S', 'M', 'L', 'XL'];
 
 const ProductDetailsScreen = () => {
   const { id } = useLocalSearchParams();
+  const router = useRouter();
   const { addItem } = useCart();
   const product = products.find((product) => product.id.toString() === id);
   const [selectedSize, setSelectedSize] = useState<PizzaSize | null>('M');
@@ -20,6 +21,7 @@ const ProductDetailsScreen = () => {
   const addToCart = () => {
     if(!selectedSize || !product) return;
     addItem(product, selectedSize);
+    router.push('/cart');
   }
 
   if(!product) return <ThereIsNoProduct />;

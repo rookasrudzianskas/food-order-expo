@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import {View, Text, StyleSheet, Image, Pressable, TouchableOpacity} from 'react-native';
 import React from 'react';
 import Colors from '../constants/Colors';
 import { FontAwesome } from '@expo/vector-icons';
@@ -14,7 +14,7 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: cartItem.product.image }}
+        source={{ uri: cartItem.product.image || '' }}
         style={styles.image}
         resizeMode="contain"
       />
@@ -26,20 +26,28 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
         </View>
       </View>
       <View style={styles.quantitySelector}>
-        <FontAwesome
+        <TouchableOpacity
           onPress={() => updateQuantity(cartItem.id, -1)}
-          name="minus"
-          color="gray"
-          style={{ padding: 5 }}
-        />
+          activeOpacity={0.8}
+        >
+          <FontAwesome
+            name="minus"
+            color="gray"
+            style={{ padding: 5 }}
+          />
+        </TouchableOpacity>
 
         <Text style={styles.quantity}>{cartItem.quantity}</Text>
-        <FontAwesome
+        <TouchableOpacity
           onPress={() => updateQuantity(cartItem.id, 1)}
-          name="plus"
-          color="gray"
-          style={{ padding: 5 }}
-        />
+          activeOpacity={0.8}
+        >
+          <FontAwesome
+            name="plus"
+            color="gray"
+            style={{ padding: 5 }}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
