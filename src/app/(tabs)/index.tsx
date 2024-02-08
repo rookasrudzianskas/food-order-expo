@@ -3,10 +3,10 @@ import React from "react";
 import products from '../../../assets/data/products';
 import ProductListItem from "@/src/components/product-list-item";
 
-const TabOneScreen = () => {
+const MenuScreen = () => {
 
   return (
-    <View className="bg-gray-100 flex-1 pt-16">
+    <View className="bg-gray-100 pt-16">
       <FlatList
         data={products}
         renderItem={({item}) => (
@@ -19,4 +19,4 @@ const TabOneScreen = () => {
   );
 };
 
-export default TabOneScreen;
+export default MenuScreen;
