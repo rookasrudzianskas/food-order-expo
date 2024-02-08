@@ -2,14 +2,7 @@ import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {Image} from "expo-image";
 import Colors from "@/src/constants/Colors";
-
-type Product = {
-  product: {
-    image: string;
-    price: number;
-    name: string;
-  }
-}
+import {Product} from "@/types";
 
 const ProductListItem = ({product}: Product) => {
   return (
