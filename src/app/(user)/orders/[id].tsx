@@ -13,6 +13,7 @@ const OrderDetailScreen = () => {
   const id = parseFloat(typeof idString === 'string' ? idString : idString[0]);
 
   const { data: order, isLoading, error } = useOrderDetails(id);
+  useUpdateOrderSubscription(id);
   if(isLoading) return <IsLoading />
   if(error) return <ErrorAPI error={error} />
 
@@ -20,7 +21,6 @@ const OrderDetailScreen = () => {
     return <Text>Order not found!</Text>;
   }
 
-  useUpdateOrderSubscription(id);
 
   return (
     <View style={styles.container}>
