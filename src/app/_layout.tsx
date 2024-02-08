@@ -6,6 +6,7 @@ import { vars } from "nativewind";
 import { memo, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import CartProvider from "@/src/providers/cart-provider";
+import AuthProvider from "../providers/auth-provider";
 
 export {
   ErrorBoundary,
@@ -48,19 +49,21 @@ const theme = vars({
 function RootLayoutNav() {
   return (
     <View style={[theme, StyleSheet.absoluteFill]}>
-      <CartProvider>
-        <Stack>
-          <Stack.Screen name="(user)" options={{ headerShown: false }} />
-          <Stack.Screen name="(admin)" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="cart"
-            options={{
-              title: "Cart",
-              presentation: 'modal'
-            }}
-          />
-        </Stack>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <Stack>
+            <Stack.Screen name="(user)" options={{ headerShown: false }} />
+            <Stack.Screen name="(admin)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="cart"
+              options={{
+                title: "Cart",
+                presentation: 'modal'
+              }}
+            />
+          </Stack>
+        </CartProvider>
+      </AuthProvider>
     </View>
   );
 }
