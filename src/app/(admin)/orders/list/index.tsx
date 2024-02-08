@@ -12,7 +12,6 @@ export default function OrdersScreen() {
   const { data: orders, isLoading, error } = useAdminOrderList({ archived: false });
   if(isLoading) return <IsLoading />
   if(error) return <ErrorAPI error={error} />
-  const queryClient = useQueryClient();
 
   useInsertOrderSubscription();
 
