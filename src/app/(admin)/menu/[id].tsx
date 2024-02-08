@@ -35,36 +35,8 @@ const ProductDetailsScreen = () => {
         contentFit="cover"
         transition={1000}
       />
-      <View className="px-3 flex-1">
-        <View className="flex-1">
-          <Text className="text-xl font-semibold">Select size:</Text>
-          <View style={styles.sizes} className="my-5 flex-1">
-            {SIZES.map((size) => (
-              <TouchableOpacity
-                onPress={() => setSelectedSize(size)}
-                key={size}
-                className="w-10 h-10 rounded-full items-center justify-center border-1 border-gray-200"
-                style={
-                  {
-                    backgroundColor: size === selectedSize ? 'gainsboro' : 'white',
-                  }
-                }
-              >
-                <Text
-                  className="text-lg font-semibold"
-                  style={{ color: size === selectedSize ? 'black' : 'gray' }}
-                >
-                  {size}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </View>
-        <>
-          <Text className="text-xl font-semibold">Price: ${product.price.toFixed(2)}</Text>
-          <Button onPress={addToCart} text="Add to cart" />
-        </>
-      </View>
+      <Text className="text-xl font-semibold">Price: ${product.price.toFixed(2)}</Text>
+      <Text className="text-lg font-semibold">Name: {product.name}</Text>
     </View>
   );
 };
