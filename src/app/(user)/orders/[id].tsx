@@ -6,7 +6,9 @@ import OrderItemListItem from "@/src/components/order-item-list";
 import {useOrderDetails} from "@/src/api/orders";
 import IsLoading from "@/src/components/ui/is-loading";
 import ErrorAPI from "@/src/components/ui/error-api";
-import React from "react";
+import React, {useEffect} from "react";
+import {supabase} from "@/src/app/lib/supabase";
+import {useUpdateOrderSubscription} from "@/src/api/orders/subscriptions";
 
 const OrderDetailScreen = () => {
   const { id: idString } = useLocalSearchParams();
@@ -19,6 +21,8 @@ const OrderDetailScreen = () => {
   if (!order) {
     return <Text>Order not found!</Text>;
   }
+
+  useUpdateOrderSubscription(id);
 
   return (
     <View style={styles.container}>
