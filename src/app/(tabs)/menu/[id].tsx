@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {useLocalSearchParams} from "expo-router";
@@ -14,6 +13,11 @@ const ProductDetailsScreen = () => {
   const { id } = useLocalSearchParams();
   const product = products.find((product) => product.id.toString() === id);
   const [selectedSize, setSelectedSize] = useState<PizzaSize | null>('M');
+
+  const addToCart = () => {
+    if(!selectedSize || !product) return;
+    console.log('Added to cart:', product?.name, selectedSize);
+  }
 
   if(!product) {
     return (
@@ -61,7 +65,7 @@ const ProductDetailsScreen = () => {
         </View>
         <>
           <Text className="text-xl font-semibold">Price: ${product.price.toFixed(2)}</Text>
-          <Button onPress={() => {}} text="Add to cart" />
+          <Button onPress={addToCart} text="Add to cart" />
         </>
       </View>
     </View>
