@@ -1,37 +1,14 @@
-import {ActivityIndicator, FlatList, Text, View} from "react-native";
-import React, {useEffect} from "react";
+import {FlatList, Text, View} from "react-native";
+import React from "react";
 import ProductListItem from "@/src/components/product-list-item";
-import {supabase} from "@/src/app/lib/supabase";
-import {useQuery} from "@tanstack/react-query";
-import {Product} from "@/types";
+import IsLoading from "@/src/components/ui/is-loading";
+import {useProductList} from "@/src/api/products";
+import ErrorAPI from "@/src/components/ui/error-api";
 
 const MenuScreen = () => {
-  const {data: products, isLoading, error } = useQuery<Product[]>({
-    queryKey: ['products'],
-    queryFn: async () => {
-      const { data, error } = await supabase.from('products').select('*');
-      if (error) {
-        throw new Error(error.message);
-      }
-      return data;
-    },
-  });
-
-  if(isLoading) {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <ActivityIndicator />
-      </View>
-    )
-  }
-
-  if(error) {
-    return (
-      <View className="flex-1 items-center justify-center">
-        <Text className="text-red-500">{error.message}</Text>
-      </View>
-    )
-  }
+  const { data: products, error, isLoading } = useProductList();
+  if(isLoading) return <IsLoading />
+  if(error) return <ErrorAPI error={error} />
 
   return (
     <View className="bg-gray-100">

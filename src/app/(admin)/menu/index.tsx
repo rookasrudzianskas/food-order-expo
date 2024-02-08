@@ -1,9 +1,14 @@
 import {FlatList, View} from "react-native";
 import React from "react";
-import products from '../../../../assets/data/products';
 import ProductListItem from "@/src/components/product-list-item";
+import {useProductList} from "@/src/api/products";
+import IsLoading from "@/src/components/ui/is-loading";
+import ErrorAPI from "@/src/components/ui/error-api";
 
 const MenuScreen = () => {
+  const { data: products, error, isLoading } = useProductList();
+  if(isLoading) return <IsLoading />
+  if(error) return <ErrorAPI error={error} />
 
   return (
     <View className="bg-gray-100">

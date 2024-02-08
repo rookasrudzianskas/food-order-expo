@@ -1,29 +1,40 @@
 import React, {useState} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {useLocalSearchParams, useRouter} from "expo-router";
-import products from "@/assets/data/products";
 import {Stack} from "expo-router";
 import {Image} from "expo-image";
 import Button from "@/src/components/ui/button";
 import {PizzaSize} from "@/types";
 import ThereIsNoProduct from "@/src/components/ui/no-product";
 import {useCart} from "@/src/providers/cart-provider";
+import {useProduct} from "@/src/api/products";
+import IsLoading from "@/src/components/ui/is-loading";
+import ErrorAPI from "@/src/components/ui/error-api";
 
 const SIZES: PizzaSize[] = ['S', 'M', 'L', 'XL'];
 
 const ProductDetailsScreen = () => {
-  const { id } = useLocalSearchParams();
-  const router = useRouter();
+  const { id: idString } = useLocalSearchParams();
+  const id = parseFloat(typeof idString === 'string' ? idString : idString[0]);
+  const { data: product, error, isLoading } = useProduct(id);
+
   const { addItem } = useCart();
-  const product = products.find((product) => product.id.toString() === id);
-  const [selectedSize, setSelectedSize] = useState<PizzaSize | null>('M');
+
+  const router = useRouter();
+
+  const [selectedSize, setSelectedSize] = useState<PizzaSize>('M');
 
   const addToCart = () => {
-    if(!selectedSize || !product) return;
+    if (!product) {
+      return;
+    }
     addItem(product, selectedSize);
     router.push('/cart');
-  }
+  };
 
+  if (error) {
+    return <Text>Failed to fetch products</Text>;
+  }
   if(!product) return <ThereIsNoProduct />;
 
   return (
