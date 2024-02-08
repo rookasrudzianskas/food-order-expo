@@ -1,9 +1,16 @@
 import { FlatList } from 'react-native-gesture-handler';
-import orders from '../../../../../assets/data/orders';
 import { Stack } from 'expo-router';
 import OrderListItem from "@/src/components/order-list-item";
+import {useAdminOrderList} from "@/src/api/orders";
+import React from "react";
+import IsLoading from "@/src/components/ui/is-loading";
+import ErrorAPI from "@/src/components/ui/error-api";
 
 export default function OrdersScreen() {
+  const { data: orders, isLoading, error } = useAdminOrderList({ archived: false });
+  if(isLoading) return <IsLoading />
+  if(error) return <ErrorAPI error={error} />
+
   return (
     <>
       <Stack.Screen options={{ title: 'Orders' }} />
