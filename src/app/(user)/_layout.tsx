@@ -1,5 +1,6 @@
+import { useAuth } from "@/src/providers/auth-provider";
 import {Feather, MaterialCommunityIcons} from "@expo/vector-icons";
-import { Link, Tabs } from "expo-router";
+import {Link, Redirect, Tabs} from "expo-router";
 import { Pressable, useColorScheme } from "react-native";
 
 function TabBarIcon(props: {
@@ -11,7 +12,11 @@ function TabBarIcon(props: {
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const { session } = useAuth();
 
+  if (!session) {
+    return <Redirect href={'/'} />;
+  }
   return (
     <Tabs>
       <Tabs.Screen
