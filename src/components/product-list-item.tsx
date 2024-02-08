@@ -3,14 +3,21 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Image} from "expo-image";
 import Colors from "@/src/constants/Colors";
 import {Product} from "@/types";
+import {useRouter} from "expo-router";
 
 type ProductListItemProps = {
   product: Product;
 };
 
 const ProductListItem = ({product}: ProductListItemProps) => {
+  const router = useRouter()
   return (
-    <TouchableOpacity activeOpacity={0.8} style={styles.container} className="bg-white flex-1 p-3 rounded-xl">
+    <TouchableOpacity
+      activeOpacity={0.8}
+      style={styles.container}
+      onPress={() => router.push('/products')}
+      className="bg-white flex-1 p-3 rounded-xl"
+    >
       <Image
         source={product.image}
         style={styles.image}
