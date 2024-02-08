@@ -10,7 +10,7 @@ type ProductListItemProps = {
 
 const ProductListItem = ({product}: ProductListItemProps) => {
   return (
-    <View className="bg-white flex-1 p-3 rounded-xl">
+    <View style={styles.container} className="bg-white flex-1 p-3 rounded-xl">
       <Image
         source={product.image}
         style={styles.image}
@@ -26,6 +26,17 @@ const ProductListItem = ({product}: ProductListItemProps) => {
 export default ProductListItem;
 
 const styles = StyleSheet.create({
+  container: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 1.84,
+
+    elevation: 5,
+  },
   price: {
     fontWeight: '600',
     color: Colors.light.tint,
