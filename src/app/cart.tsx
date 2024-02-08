@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-import {Text, View, StyleSheet, Platform} from 'react-native';
+import React from 'react';
+import {Text, View, Platform} from 'react-native';
 import {StatusBar} from "expo-status-bar";
 import {useCart} from "@/src/providers/cart-provider";
 
