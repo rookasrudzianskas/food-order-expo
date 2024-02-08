@@ -12,7 +12,7 @@ export {
 } from "expo-router";
 
 export const unstable_settings = {
-  initialRouteName: "(tabs)",
+  initialRouteName: "(user)",
 };
 
 SplashScreen.preventAutoHideAsync();
@@ -50,7 +50,8 @@ function RootLayoutNav() {
     <View style={[theme, StyleSheet.absoluteFill]}>
       <CartProvider>
         <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="(user)" options={{ headerShown: false }} />
+          <Stack.Screen name="(admin)" options={{ headerShown: false }} />
           <Stack.Screen
             name="cart"
             options={{
