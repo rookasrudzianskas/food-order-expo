@@ -7,6 +7,7 @@ import { memo, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import CartProvider from "@/src/providers/cart-provider";
 import AuthProvider from "../providers/auth-provider";
+import QueryProvider from "@/src/providers/query-providers";
 
 export {
   ErrorBoundary,
@@ -50,19 +51,21 @@ function RootLayoutNav() {
   return (
     <View style={[theme, StyleSheet.absoluteFill]}>
       <AuthProvider>
-        <CartProvider>
-          <Stack>
-            <Stack.Screen name="(user)" options={{ headerShown: false }} />
-            <Stack.Screen name="(admin)" options={{ headerShown: false }} />
-            <Stack.Screen
-              name="cart"
-              options={{
-                title: "Cart",
-                presentation: 'modal'
-              }}
-            />
-          </Stack>
-        </CartProvider>
+        <QueryProvider>
+          <CartProvider>
+            <Stack>
+              <Stack.Screen name="(user)" options={{ headerShown: false }} />
+              <Stack.Screen name="(admin)" options={{ headerShown: false }} />
+              <Stack.Screen
+                name="cart"
+                options={{
+                  title: "Cart",
+                  presentation: 'modal'
+                }}
+              />
+            </Stack>
+          </CartProvider>
+        </QueryProvider>
       </AuthProvider>
     </View>
   );

@@ -1,6 +1,6 @@
-import { Order } from '../../src/types';
 import products from './products';
 import dayjs from 'dayjs';
+import {Order} from "@/types";
 
 const now = dayjs();
 
