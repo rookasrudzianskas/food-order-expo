@@ -6,6 +6,7 @@ import {Stack} from "expo-router";
 import {Image} from "expo-image";
 import Button from "@/src/components/ui/button";
 import {PizzaSize} from "@/types";
+import ThereIsNoProduct from "@/src/components/ui/NoProduct";
 
 const SIZES: PizzaSize[] = ['S', 'M', 'L', 'XL'];
 
@@ -19,15 +20,7 @@ const ProductDetailsScreen = () => {
     console.log('Added to cart:', product?.name, selectedSize);
   }
 
-  if(!product) {
-    return (
-      <View className="flex-1 flex items-center justify-center">
-        <Text className="text-lg font-semibold">
-          Product not found
-        </Text>
-      </View>
-    );
-  }
+  if(!product) return <ThereIsNoProduct />;
 
   return (
     <View className="flex-1 bg-white p-3">
