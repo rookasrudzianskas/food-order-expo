@@ -73,6 +73,7 @@ const ProductDetailsScreen = () => {
           </View>
         </View>
         <>
+          {/* @ts-ignore */}
           <Text className="text-xl font-semibold">Price: ${product.price.toFixed(2)}</Text>
           <Button onPress={addToCart} text="Add to cart" />
         </>
