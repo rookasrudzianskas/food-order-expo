@@ -9,10 +9,10 @@ import {useInsertOrderSubscription} from "@/src/api/orders/subscriptions";
 
 export default function OrdersScreen() {
   const { data: orders, isLoading, error } = useAdminOrderList({ archived: false });
+  useInsertOrderSubscription();
   if(isLoading) return <IsLoading />
   if(error) return <ErrorAPI error={error} />
 
-  useInsertOrderSubscription();
 
   return (
     <>

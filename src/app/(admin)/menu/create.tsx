@@ -10,8 +10,8 @@ import {Stack} from "expo-router";
 import {useDeleteProduct, useInsertProduct, useProduct, useUpdateProduct} from "@/src/api/products";
 import * as FileSystem from 'expo-file-system';
 import { randomUUID } from 'expo-crypto';
-import { supabase } from '@/lib/supabase';
 import { decode } from 'base64-arraybuffer';
+import {supabase} from "@/src/app/lib/supabase";
 
 const CreateProductScreen = () => {
   const [name, setName] = useState('');
