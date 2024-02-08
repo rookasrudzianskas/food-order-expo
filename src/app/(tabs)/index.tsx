@@ -1,19 +1,31 @@
-// tab one screen
-import { vars, useColorScheme } from "nativewind";
-import { Pressable, Text, View, PressableProps } from "react-native";
-import { cva, type VariantProps } from "class-variance-authority";
+import {Image, StyleSheet, Text, View} from "react-native";
 import React from "react";
+import products from '../../../assets/data/products';
+import Colors from "@/src/constants/Colors";
 
 const TabOneScreen = () => {
+  const product = products[0];
+
   return (
-    <View className="bg-gray-100 flex-1 p-3">
-      <View className="flex-1 bg-white rounded-xl pt-6 items-center justify-center">
-        <Text className="text-2xl uppercase font-bold text-gray-700 text-center">
-          Nativewind v4
-        </Text>
-      </View>
+    <View className="bg-gray-100 flex-1 p-3 items-center justify-center">
+      <Image
+        source={{ uri: product.image }}
+        style={{
+          width: 100,
+          height: 100,
+        }}
+      />
+      <Text className="text-xl font-semibold mb-2">{product.name}</Text>
+      <Text style={styles.price}>${product.price}</Text>
     </View>
   );
 };
 
 export default TabOneScreen;
+
+const styles = StyleSheet.create({
+  price: {
+    fontWeight: '600',
+    color: Colors.light.tint,
+  }
+})
