@@ -5,11 +5,18 @@ import OrderListItem from "@/src/components/order-list-item";
 import OrderItemListItem from "@/src/components/order-item-list";
 import Colors from '@/src/constants/Colors';
 import {OrderStatusList} from "@/types";
+import {useOrderDetails} from "@/src/api/orders";
+import IsLoading from "@/src/components/ui/is-loading";
+import ErrorAPI from "@/src/components/ui/error-api";
+import React from "react";
 
 const OrderDetailScreen = () => {
-  const { id } = useLocalSearchParams();
+  const { id: idString } = useLocalSearchParams();
+  const id = parseFloat(typeof idString === 'string' ? idString : idString[0]);
 
-  const order = orders.find((o) => o.id.toString() === id);
+  const { data: order, isLoading, error } = useOrderDetails(id);
+  if(isLoading) return <IsLoading />
+  if(error) return <ErrorAPI error={error} />
 
   if (!order) {
     return <Text>Order not found!</Text>;
@@ -23,6 +30,7 @@ const OrderDetailScreen = () => {
 
       <FlatList
         data={order.order_items}
+        // @ts-ignore
         renderItem={({ item }) => <OrderItemListItem item={item} />}
         contentContainerStyle={{ gap: 10 }}
         ListFooterComponent={() => (
