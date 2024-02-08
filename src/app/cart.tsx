@@ -32,9 +32,9 @@ const Cart = () => {
       </View>
 
       <View className="px-3 mb-10">
-        <View>
+        <>
           <Text className="text-xl font-semibold pt-1">Total: ${total.toFixed(2)}</Text>
-        </View>
+        </>
         <Button text="Checkout" />
       </View>
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
