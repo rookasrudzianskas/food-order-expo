@@ -25,7 +25,24 @@ export default function CartProvider({ children }: PropsWithChildren) {
   );
 
   const addItem = (product: Product, size: CartItem['size']) => {
+    const existingItem = items.find(
+      (item) => item.product.id === product.id && item.size === size
+    );
 
+    if (existingItem) {
+      updateQuantity(existingItem.id, 1);
+      return;
+    }
+
+    const newItem: CartItem = {
+      id: randomUUID(),
+      product_id: product.id,
+      product,
+      size,
+      quantity: 1
+    };
+
+    setItems((prevItems) => [...prevItems, newItem]);
   };
 
   const updateQuantity = (itemId: string, amount: 1 | -1) => {

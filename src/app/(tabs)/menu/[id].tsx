@@ -7,17 +7,19 @@ import {Image} from "expo-image";
 import Button from "@/src/components/ui/button";
 import {PizzaSize} from "@/types";
 import ThereIsNoProduct from "@/src/components/ui/no-product";
+import {useCart} from "@/src/providers/cart-provider";
 
 const SIZES: PizzaSize[] = ['S', 'M', 'L', 'XL'];
 
 const ProductDetailsScreen = () => {
   const { id } = useLocalSearchParams();
+  const { addItem } = useCart();
   const product = products.find((product) => product.id.toString() === id);
   const [selectedSize, setSelectedSize] = useState<PizzaSize | null>('M');
 
   const addToCart = () => {
     if(!selectedSize || !product) return;
-    console.log('Added to cart:', product?.name, selectedSize);
+    addItem(product, selectedSize);
   }
 
   if(!product) return <ThereIsNoProduct />;
