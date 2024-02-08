@@ -6,7 +6,7 @@ import CartListItem from "@/src/components/cart-list-item";
 import Button from '../components/ui/button';
 
 const Cart = () => {
-  const { items , total } = useCart();
+  const { items , total, checkout } = useCart();
 
   if(items.length === 0) {
     return (
@@ -35,7 +35,7 @@ const Cart = () => {
         <>
           <Text className="text-xl font-semibold pt-1">Total: ${total.toFixed(2)}</Text>
         </>
-        <Button text="Checkout" />
+        <Button onPress={checkout} text="Checkout" />
       </View>
       <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} />
     </View>

@@ -2,6 +2,7 @@ import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 // @ts-ignore
 import {supabase} from "@/src/app/lib/supabase";
 import {useAuth} from "@/src/providers/auth-provider";
+import {InsertTables} from "@/types";
 
 export const useAdminOrderList = ({ archived = false }) => {
   const statuses = archived ? ['Delivered'] : ['New', 'Cooking', 'Delivering'];
@@ -67,7 +68,6 @@ export const useInsertOrder = () => {
   const userId = session?.user.id;
 
   return useMutation({
-    // @ts-ignore
     async mutationFn(data: InsertTables<'orders'>) {
       const { error, data: newProduct } = await supabase
         .from('orders')
