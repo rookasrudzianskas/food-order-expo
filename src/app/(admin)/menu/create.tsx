@@ -8,8 +8,10 @@ import * as ImagePicker from 'expo-image-picker';
 import Button from "@/src/components/ui/button";
 import {Stack} from "expo-router";
 import {useDeleteProduct, useInsertProduct, useProduct, useUpdateProduct} from "@/src/api/products";
-import IsLoading from "@/src/components/ui/is-loading";
-import ErrorAPI from "@/src/components/ui/error-api";
+import * as FileSystem from 'expo-file-system';
+import { randomUUID } from 'expo-crypto';
+import { supabase } from '@/lib/supabase';
+import { decode } from 'base64-arraybuffer';
 
 const CreateProductScreen = () => {
   const [name, setName] = useState('');
@@ -142,27 +144,27 @@ const CreateProductScreen = () => {
     ]);
   };
 
-  // const uploadImage = async () => {
-  //   if (!image?.startsWith('file://')) {
-  //     return;
-  //   }
-  //
-  //   const base64 = await FileSystem.readAsStringAsync(image, {
-  //     encoding: 'base64',
-  //   });
-  //   const filePath = `${randomUUID()}.png`;
-  //   const contentType = 'image/png';
-  //
-  //   const { data, error } = await supabase.storage
-  //     .from('product-images')
-  //     .upload(filePath, decode(base64), { contentType });
-  //
-  //   console.log(error);
-  //
-  //   if (data) {
-  //     return data.path;
-  //   }
-  // };
+  const uploadImage = async () => {
+    if (!image?.startsWith('file://')) {
+      return;
+    }
+
+    const base64 = await FileSystem.readAsStringAsync(image, {
+      encoding: 'base64',
+    });
+    const filePath = `${randomUUID()}.png`;
+    const contentType = 'image/png';
+
+    const { data, error } = await supabase.storage
+      .from('product-images')
+      .upload(filePath, decode(base64), { contentType });
+
+    console.log(error);
+
+    if (data) {
+      return data.path;
+    }
+  };
 
   return (
     <View style={styles.container}>
