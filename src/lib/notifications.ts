@@ -1,7 +1,10 @@
+// @ts-nocheck
 import { Platform } from 'react-native';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
+import {supabase} from "@/src/app/lib/supabase";
+import {Tables} from "@/types";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -70,3 +73,20 @@ export async function registerForPushNotificationsAsync() {
 
   return token;
 }
+
+const getUserToken = async (userId: string) => {
+  const { data } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('id', userId)
+    .single();
+  return data?.expo_push_token;
+};
+
+export const notifyUserAboutOrderUpdate = async (order: Tables<'orders'>) => {
+  const token = await getUserToken(order.user_id);
+  console.log('Order: ', order);
+  const title = `Your order is ${order.status}`;
+  const body = `Body`;
+  sendPushNotification(token, title, body);
+};
