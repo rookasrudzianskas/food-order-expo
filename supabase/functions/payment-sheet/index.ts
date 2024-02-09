@@ -21,7 +21,6 @@ serve(async (req: Request) => {
       amount: amount,
       currency: 'usd',
       customer: customer,
-      ephemeralKey: ephemeralKey.secret,
     });
 
     const res = {
