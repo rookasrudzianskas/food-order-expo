@@ -8,6 +8,7 @@ import { View, StyleSheet } from "react-native";
 import CartProvider from "@/src/providers/cart-provider";
 import AuthProvider from "../providers/auth-provider";
 import QueryProvider from "@/src/providers/query-providers";
+import {StripeProvider} from "@stripe/stripe-react-native";
 
 export {
   ErrorBoundary,
@@ -50,23 +51,29 @@ const theme = vars({
 function RootLayoutNav() {
   return (
     <View style={[theme, StyleSheet.absoluteFill]}>
-      <AuthProvider>
-        <QueryProvider>
-          <CartProvider>
-            <Stack>
-              <Stack.Screen name="(user)" options={{ headerShown: false }} />
-              <Stack.Screen name="(admin)" options={{ headerShown: false }} />
-              <Stack.Screen
-                name="cart"
-                options={{
-                  title: "Cart",
-                  presentation: 'modal'
-                }}
-              />
-            </Stack>
-          </CartProvider>
-        </QueryProvider>
-      </AuthProvider>
+      <StripeProvider
+        publishableKey={
+          process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY || ''
+        }
+      >
+        <AuthProvider>
+          <QueryProvider>
+            <CartProvider>
+              <Stack>
+                <Stack.Screen name="(user)" options={{ headerShown: false }} />
+                <Stack.Screen name="(admin)" options={{ headerShown: false }} />
+                <Stack.Screen
+                  name="cart"
+                  options={{
+                    title: "Cart",
+                    presentation: 'modal'
+                  }}
+                />
+              </Stack>
+            </CartProvider>
+          </QueryProvider>
+        </AuthProvider>
+      </StripeProvider>
     </View>
   );
 }
