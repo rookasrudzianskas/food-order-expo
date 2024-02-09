@@ -22,6 +22,8 @@ const OrderDetailScreen = () => {
   const updateStatus = (status: string) => {
     console.warn('updateStatus', status);
     updateOrder({ id: id, updatedFields: { status } });
+
+
   }
 
   if (!order) {
