@@ -9,6 +9,7 @@ import CartProvider from "@/src/providers/cart-provider";
 import AuthProvider from "../providers/auth-provider";
 import QueryProvider from "@/src/providers/query-providers";
 import {StripeProvider} from "@stripe/stripe-react-native";
+import NotificationProvider from "@/src/providers/notifications-provider";
 
 export {
   ErrorBoundary,
@@ -58,19 +59,21 @@ function RootLayoutNav() {
       >
         <AuthProvider>
           <QueryProvider>
-            <CartProvider>
-              <Stack>
-                <Stack.Screen name="(user)" options={{ headerShown: false }} />
-                <Stack.Screen name="(admin)" options={{ headerShown: false }} />
-                <Stack.Screen
-                  name="cart"
-                  options={{
-                    title: "Cart",
-                    presentation: 'modal'
-                  }}
-                />
-              </Stack>
-            </CartProvider>
+            <NotificationProvider>
+              <CartProvider>
+                <Stack>
+                  <Stack.Screen name="(user)" options={{ headerShown: false }} />
+                  <Stack.Screen name="(admin)" options={{ headerShown: false }} />
+                  <Stack.Screen
+                    name="cart"
+                    options={{
+                      title: "Cart",
+                      presentation: 'modal'
+                    }}
+                  />
+                </Stack>
+              </CartProvider>
+            </NotificationProvider>
           </QueryProvider>
         </AuthProvider>
       </StripeProvider>
