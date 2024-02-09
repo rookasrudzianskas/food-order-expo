@@ -18,14 +18,16 @@
     "ios": {
       "supportsTablet": true,
       "userInterfaceStyle": "automatic",
-      "requireFullScreen": true
+      "requireFullScreen": true,
+      "bundleIdentifier": "com.rooookas.nativewindexporouter"
     },
     "android": {
       "userInterfaceStyle": "automatic",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.rooookas.nativewindexporouter"
     },
     "web": {
       "bundler": "metro",
@@ -48,6 +50,9 @@
     "extra": {
       "router": {
         "origin": false
+      },
+      "eas": {
+        "projectId": "acf6348d-24c2-4848-b4b6-349def5bc53e"
       }
     }
   }
