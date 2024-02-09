@@ -33,7 +33,7 @@ export const initialisePaymentSheet = async (amount: number) => {
   });
 };
 
-const openPaymentSheet = async () => {
+export const openPaymentSheet = async () => {
   const { error } = await presentPaymentSheet();
 
   if (error) {

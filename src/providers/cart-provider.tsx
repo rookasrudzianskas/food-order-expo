@@ -4,7 +4,7 @@ import { randomUUID } from 'expo-crypto';
 import {useInsertOrder} from "@/src/api/orders";
 import {useRouter} from "expo-router";
 import {useInsertOrderItems} from "@/src/api/order-items";
-import {initialisePaymentSheet} from "@/src/app/lib/stripe";
+import {initialisePaymentSheet, openPaymentSheet} from "@/src/app/lib/stripe";
 
 type Product = Tables<'products'>;
 
@@ -40,6 +40,12 @@ export default function CartProvider({ children }: PropsWithChildren) {
     console.warn('implemented');
 
     await initialisePaymentSheet(Math.floor(total * 100));
+
+    const payed = await openPaymentSheet();
+
+    if (!payed) {
+      return;
+    }
 
     insertOrder({
       total,
