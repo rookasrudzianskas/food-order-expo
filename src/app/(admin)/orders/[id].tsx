@@ -20,12 +20,14 @@ const OrderDetailScreen = () => {
   if(isLoading) return <IsLoading />
   if(error) return <ErrorAPI error={error} />
 
-  const updateStatus = (status: string) => {
-    console.warn('updateStatus', status);
-    updateOrder({ id: id, updatedFields: { status } });
+  const updateStatus = async (status: string) => {
+    await updateOrder({
+      id: id,
+      updatedFields: { status },
+    });
 
-    if(order) {
-      notifyUserAboutOrderUpdate(order);
+    if (order) {
+      await notifyUserAboutOrderUpdate({ ...order, status });
     }
   }
 
