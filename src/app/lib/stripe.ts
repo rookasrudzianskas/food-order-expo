@@ -9,10 +9,11 @@ const fetchPaymentSheetParams = async (amount: number) => {
     body: { amount },
   });
 
-  if (data) {
+  if(data) {
     return data;
   }
-  Alert.alert(`Error: ${error?.message ?? 'no data'}`);
+
+  Alert.alert('Error', 'Failed to fetch payment sheet params');
   return {};
 };
 
@@ -27,7 +28,7 @@ export const initialisePaymentSheet = async (amount: number) => {
     // customerId: customer,
     paymentIntentClientSecret: paymentIntent,
     defaultBillingDetails: {
-      name: 'Jane Doe',
+      name: 'Rokas Doe',
     },
   });
 };
