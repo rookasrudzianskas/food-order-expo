@@ -4,11 +4,12 @@ import orders from '../../../../assets/data/orders';
 import OrderListItem from "@/src/components/order-list-item";
 import OrderItemListItem from "@/src/components/order-item-list";
 import Colors from '@/src/constants/Colors';
-import {OrderStatusList} from "@/types";
+import {OrderStatusList, Tables} from "@/types";
 import {useOrderDetails, useUpdateOrder} from "@/src/api/orders";
 import IsLoading from "@/src/components/ui/is-loading";
 import ErrorAPI from "@/src/components/ui/error-api";
 import React from "react";
+import {notifyUserAboutOrderUpdate} from "@/src/lib/notifications";
 
 const OrderDetailScreen = () => {
   const { id: idString } = useLocalSearchParams();
@@ -23,7 +24,9 @@ const OrderDetailScreen = () => {
     console.warn('updateStatus', status);
     updateOrder({ id: id, updatedFields: { status } });
 
-
+    if(order) {
+      notifyUserAboutOrderUpdate(order);
+    }
   }
 
   if (!order) {

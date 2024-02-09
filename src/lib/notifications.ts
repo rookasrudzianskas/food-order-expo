@@ -85,8 +85,7 @@ const getUserToken = async (userId: string) => {
 
 export const notifyUserAboutOrderUpdate = async (order: Tables<'orders'>) => {
   const token = await getUserToken(order.user_id);
-  console.log('Order: ', order);
-  const title = `Your order is ${order.status}`;
-  const body = `Body`;
+  console.log('token', token);
+
   sendPushNotification(token, title, body);
 };
