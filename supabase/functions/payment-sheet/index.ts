@@ -1,20 +1,36 @@
-// Follow this setup guide to integrate the Deno language server with your editor:
-// https://deno.land/manual/getting_started/setup_your_environment
-// This enables autocomplete, go to definition, etc.
+// @ts-nocheck
+import { serve } from 'https://deno.land/std@0.168.0/http/server.ts';
+import {stripe} from "@/supabase/functions/payment-sheet/_utils/stripe";
 
-console.log("Hello from Functions!")
+console.log('Hello from Functions!');
 
-Deno.serve(async (req) => {
-  const { name } = await req.json()
-  const data = {
-    message: `Hello ${name}!`,
+serve(async (req) => {
+  try {
+    const { amount } = await req.json();
+
+    // Create a PaymentIntent so that the SDK can charge the logged in customer.
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: 1099,
+      currency: 'usd',
+      // customer: customer,
+    });
+    const res = {
+      publishableKey: Deno.env.get('EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY'),
+      paymentIntent: paymentIntent.client_secret,
+      // ephemeralKey: ephemeralKey.secret,
+      // customer: customer,
+    };
+    return new Response(JSON.stringify(res), {
+      headers: { 'Content-Type': 'application/json' },
+      status: 200,
+    });
+  } catch (error) {
+    return new Response(JSON.stringify(error), {
+      headers: { 'Content-Type': 'application/json' },
+      status: 400,
+    });
   }
-
-  return new Response(
-    JSON.stringify(data),
-    { headers: { "Content-Type": "application/json" } },
-  )
-})
+});
 
 /* To invoke locally:
 
